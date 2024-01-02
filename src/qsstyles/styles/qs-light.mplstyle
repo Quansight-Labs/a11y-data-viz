@@ -1,0 +1,26 @@
+# font & text
+text.color         : 15181E # 900
+axes.titlecolor    : 15181E # 900
+
+# axes
+axes.edgecolor     : 232832 # 800
+axes.facecolor     : FFFFFF
+axes.labelcolor    : 15181E # 900
+
+# ticks
+xtick.color          : 15181E # 900
+ytick.color          : 15181E # 900
+
+# figure
+figure.facecolor     : FFFFFF
+
+# grid
+grid.color           : D1D4DA # 300
+
+#legend
+legend.facecolor     : inherit
+legend.edgecolor     : 9DA4AF # 400
+legend.labelcolor    : 15181E # 900
+
+# hatching
+hatch.color          : F9F9FA # 50
