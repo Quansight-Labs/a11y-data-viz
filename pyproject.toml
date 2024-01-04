@@ -3,11 +3,11 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "qsstyles"
+name = "qstyles"
 dynamic = ["version"]
 description = ''
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 license = "BSD-3-Clause"
 keywords = ["theme", "styles", "matplotlib"]
 authors = [
@@ -16,10 +16,10 @@ authors = [
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
   "License :: OSI Approved :: BSD License",
@@ -28,16 +28,20 @@ classifiers = [
 dependencies = ["matplotlib"]
 
 [project.urls]
-Documentation = "https://github.com/trallard/qsstyles#readme"
-Issues = "https://github.com/trallard/qsstyles/issues"
-Source = "https://github.com/trallard/qsstyles"
+Documentation = "https://github.com/trallard/qstyles#readme"
+Issues = "https://github.com/trallard/qstyles/issues"
+Source = "https://github.com/trallard/qstyles"
 
 # Versioning -------------------------------------------------------------------
 [tool.hatch.version]
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/qsstyles/_version.py"
+version-file = "src/qstyles/_version.py"
+
+# Packaging --------------------------------------------------------------------
+[tool.hatch.build.targets.wheel]
+packages = ["src/qstyles"]
 
 # Testing ----------------------------------------------------------------------
 [tool.hatch.envs.test]
@@ -45,6 +49,7 @@ dependencies = [
   "coverage[toml]>=6.5",
   "pytest",
 ]
+
 [tool.hatch.envs.test.scripts]
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
@@ -58,7 +63,7 @@ cov = [
 ]
 
 [[tool.hatch.envs.all.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11"]
+python = ["3.9", "3.10", "3.11", "3.12"]
 
 # Linting and formatting  ------------------------------------------------------
 [tool.hatch.envs.lint]
@@ -67,7 +72,6 @@ detached = true
 dependencies = [
   "pre-commit",
 ]
-
 
 [tool.black]
 line-length = 79
@@ -109,6 +113,8 @@ ignore = [
   "S105", "S106", "S107",
   # Ignore complexity
   "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
+  # We use random classes here
+  "RUF012"
 ]
 unfixable = [
   # Don't touch unused imports
@@ -116,28 +122,28 @@ unfixable = [
 ]
 
 [tool.ruff.isort]
-known-first-party = ["qsstyles"]
+known-first-party = ["qstyles"]
 lines-between-types = 1
 lines-after-imports = 2
 
-[tool.ruff.flake8-tidy-imports]
-ban-relative-imports = "all"
+# [tool.ruff.flake8-tidy-imports]
+# ban-relative-imports = "all"
 
 [tool.ruff.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 
 [tool.coverage.run]
-source_pkgs = ["qsstyles"]
+source_pkgs = ["qstyles"]
 branch = true
 parallel = true
 omit = [
-  "src/qsstyles/_version.py",
+  "src/qstyles/_version.py",
 ]
 
 [tool.coverage.paths]
-qsstyles = ["src/qsstyles", "*/qsstyles/src/qsstyles"]
-tests = ["tests", "*/qsstyles/tests"]
+qstyles = ["src/qstyles", "*/qstyles/src/qstyles"]
+tests = ["tests", "*/qstyles/tests"]
 
 [tool.coverage.report]
 show_missing = true
