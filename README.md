@@ -1,9 +1,9 @@
-# qsstyles
+# qstyles
 
-[![PyPI - Version](https://img.shields.io/pypi/v/qsstyles.svg)](https://pypi.org/project/qsstyles)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/qsstyles.svg)](https://pypi.org/project/qsstyles)
+[![PyPI - Version](https://img.shields.io/pypi/v/qstyles.svg)](https://pypi.org/project/qstyles)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/qstyles.svg)](https://pypi.org/project/qstyles)
 
------
+---
 
 **Table of Contents**
 
@@ -13,9 +13,9 @@
 ## Installation
 
 ```console
-pip install qsstyles
+pip install qstyles
 ```
 
 ## License
 
-`qsstyles` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+`qstyles` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
