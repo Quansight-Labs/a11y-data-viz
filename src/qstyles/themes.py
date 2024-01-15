@@ -1,133 +1,201 @@
+from pathlib import Path
 from typing import Optional
 
+from matplotlib import font_manager
+
 from qstyles.palettes import Base
-from qstyles.styler import create_palette, set_theme
+from qstyles.styler import compose_theme, set_theme
+
+
+line_style_cycler = ["-", "--", ":", "-."]
+marker_style_cycler = ["o", "D", "v", "s"]
+
+FONTS_PATH = Path(__file__).parent / "vendor/Inter"
+
+font_files = font_manager.findSystemFonts(fontpaths=str(FONTS_PATH))
+
+for font_file in font_files:
+    font_manager.fontManager.addfont(font_file)
 
 
 def _base_theme() -> dict:
+    """Common plotting settings for this package. It provides a consistent set
+    of plotting settings for all the themes.
+
+    Returns:
+        dict: Dictionary containing the common plotting settings and usable by
+        matplotlib.rcParams.update()
+    """
+
     style_dict = {
-        "lines.linewidth": 1.5,
         "lines.markersize": 4.0,
-        "hatch.linewidth": 2.0,
         "font.family": ["sans-serif"],
-        "font.sans-serif": ["Arial", "DejaVu Sans", "sans-serif"],
-        "font.size": 14.0,
-        "axes.titlesize": "x-large",
-        "axes.titlepad": 16.0,
+        "font.sans-serif": ["Inter", "Helvetica", "sans-serif"],
         "axes.titleweight": "bold",
-        "axes.labelsize": "medium",
         "axes.labelpad": 8.0,
         "axes.labelweight": 600,
-        "axes.linewidth": 1.0,
-        "axes.grid": True,
+        "axes.labelsize": "medium",
+        "axes.titlesize": "x-large",
         "axes.grid.which": "major",
         "xtick.labelsize": "small",
         "ytick.labelsize": "small",
         "xtick.major.size": 8.25,
         "xtick.minor.size": 4.125,
-        "xtick.major.width": 0.75,
-        "xtick.minor.width": 0.75,
         "xtick.major.pad": 6,
         "xtick.minor.pad": 6,
         "xtick.direction": "out",
         "xtick.minor.visible": False,
-        "ytick.major.size": 8.25,
-        "ytick.minor.size": 4.125,
-        "ytick.major.width": 0.75,
-        "ytick.minor.width": 0.75,
         "ytick.major.pad": 6,
         "ytick.minor.pad": 6,
         "ytick.direction": "out",
         "ytick.minor.visible": False,
-        "grid.linewidth": 0.75,
         "grid.alpha": 0.5,
-        "legend.fontsize": "medium",
+        "legend.fontsize": "small",
         "legend.title_fontsize": "medium",
         "legend.fancybox": True,
+        "legend.frameon": True,
+        "legend.framealpha": 1.0,
         "figure.figsize": (8, 6),
+        "figure.titleweight": 600,
+        "savefig.pad_inches": 0.2,
         "figure.titlesize": "larger",
-        "figure.titleweight": "600",
     }
     return style_dict
 
 
-def light_theme(palette: Optional[str] = None):
-    # apply base theme first
-    theme_dict = _base_theme()
+def light_theme(
+    minimal: Optional[bool],
+    palette: Optional[str] = None,
+    context: Optional[str] = "notebook",
+    grid: Optional[bool] = True,
+) -> None:
+    """Default light theme.
 
-    if palette:
-        color_palette = create_palette(palette, "light")
-    else:
-        color_palette = create_palette("violet", "light")
+    Args:
+        palette (Optional[str]): Colour palette to use.
+        minimal (Optional[bool]): If yes will remove some line items such as
+            grids, splines (borders), lengend frame edges.
+        context (Optional[str], optional): Plots use context, this allows for
+            adequate scaling of fonts and line elements. Can be one of "print",
+            "notebook", "presentation". Defaults to "notebook".
+        grid (Optional[bool], optional): Param to turn grids on (True) or
+            off (False). Defaults to True.
+    """
 
-    palette = {
-        "axes.prop_cycle": color_palette,
-    }
-    theme_dict.update(palette)
+    theme_dict = compose_theme(
+        style="light",
+        theme_dict=_base_theme(),
+        palette=palette,
+        context=context,
+        grid=grid,
+    )
+
     theme_dict.update(_light_settings())
+
+    # Add the minimal settings last to avoid overriding it with other settings
+    if minimal:
+        theme_dict.update(_minimal())
 
     set_theme(theme_dict)
 
 
-def dark_theme(palette: Optional[str] = None):
-    # apply base theme first
-    theme_dict = _base_theme()
+def dark_theme(
+    minimal: Optional[bool],
+    palette: Optional[str] = None,
+    context: Optional[str] = "notebook",
+    grid: Optional[bool] = True,
+) -> None:
+    """Default dark theme.
 
-    if palette:
-        color_palette = create_palette(palette, "dark")
-    else:
-        color_palette = create_palette("violet", "dark")
+    Args:
+        palette (Optional[str]): Colour palette to use.
+        minimal (Optional[bool]): If yes will remove some line items such as
+            grids, splines (borders), lengend frame edges.
+        context (Optional[str], optional): Plots use context, this allows for
+            adequate scaling of fonts and line elements. Can be one of "print",
+            "notebook", "presentation". Defaults to "notebook".
+        grid (Optional[bool], optional): Param to turn grids on (True) or
+            off (False). Defaults to True.
+    """
 
-    palette = {
-        "axes.prop_cycle": color_palette,
-    }
-    theme_dict.update(palette)
+    theme_dict = compose_theme(
+        style="dark",
+        theme_dict=_base_theme(),
+        palette=palette,
+        context=context,
+        grid=grid,
+    )
+
     theme_dict.update(_dark_settings())
+    # Add the minimal settings last to avoid overriding it with other settings
+    if minimal:
+        theme_dict.update(_minimal())
 
     set_theme(theme_dict)
 
 
 def _light_settings():
+    bg_color = "white"
+    fg_color = Base.grey[800]
+    fg_color_darker = Base.grey[900]
+    fg_color_lighter = Base.grey[700]
+    grid_color = Base.grey[300]
+
     light_settings = {
-        "patch.edgecolor": "w",
+        "patch.edgecolor": bg_color,
         "patch.force_edgecolor": True,
-        "text.color": Base.grey[800],
-        "axes.titlecolor": Base.grey[800],
-        "axes.edgecolor": Base.grey[800],
-        "axes.labelcolor": Base.grey[800],
-        "axes.facecolor": "white",
-        "xtick.color": Base.grey[800],
-        "ytick.color": Base.grey[800],
-        "grid.color": Base.grey[300],
-        "legend.edgecolor": Base.grey[600],
-        "legend.labelcolor": Base.grey[800],
+        "text.color": fg_color,
+        "axes.titlecolor": fg_color_darker,
+        "axes.edgecolor": fg_color,
+        "axes.labelcolor": fg_color,
+        "axes.facecolor": bg_color,
+        "xtick.color": fg_color,
+        "ytick.color": fg_color,
+        "grid.color": grid_color,
+        "legend.edgecolor": fg_color_lighter,
+        "legend.labelcolor": fg_color,
         "legend.facecolor": "inherit",
-        "legend.frameon": True,
-        "legend.framealpha": 1.0,
-        "figure.facecolor": "white",
+        "figure.facecolor": bg_color,
         "hatch.color": Base.grey[50],
     }
     return light_settings
 
 
 def _dark_settings():
+    bg_color = Base.grey[900]
+    fg_color = Base.grey[100]
+    fg_color_lighter = Base.grey[50]
+    fg_color_darker = Base.grey[200]
+    grid_color = Base.grey[700]
+
     light_settings = {
-        "patch.edgecolor": Base.grey[900],
+        "patch.edgecolor": bg_color,
         "patch.force_edgecolor": True,
-        "text.color": Base.grey[100],
-        "axes.titlecolor": Base.grey[50],
-        "axes.edgecolor": Base.grey[300],
-        "axes.labelcolor": Base.grey[100],
-        "axes.facecolor": Base.grey[900],
-        "xtick.color": Base.grey[300],
-        "ytick.color": Base.grey[300],
-        "grid.color": Base.grey[700],
-        "legend.edgecolor": Base.grey[600],
-        "legend.labelcolor": Base.grey[100],
+        "text.color": fg_color,
+        "axes.titlecolor": fg_color_lighter,
+        "axes.edgecolor": fg_color,
+        "axes.labelcolor": fg_color,
+        "axes.facecolor": bg_color,
+        "xtick.color": fg_color,
+        "ytick.color": fg_color,
+        "grid.color": grid_color,
+        "legend.edgecolor": fg_color_darker,
+        "legend.labelcolor": fg_color,
         "legend.facecolor": "inherit",
-        "legend.frameon": True,
-        "legend.framealpha": 1.0,
-        "figure.facecolor": Base.grey[900],
+        "figure.facecolor": bg_color,
         "hatch.color": Base.grey[50],
     }
     return light_settings
+
+
+def _minimal():
+    """Minimal theme - it removes some line items such as grids, splines
+    (borders), legend frame edges."""
+    minimal = {
+        "axes.grid": False,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        "legend.edgecolor": "none",
+    }
+
+    return minimal

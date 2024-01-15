@@ -3,7 +3,7 @@
 # license that can be found in the LICENSE file.
 
 
-class ColorPalettes:
+class Sequential:
     """Quansight colour palettes. These can be used for both
     categorical and sequential data.
 
@@ -27,7 +27,6 @@ class ColorPalettes:
         100: "#200E48",
         50: "#160048",
     }
-
     plum = {
         900: "#501A45",
         800: "#652058",
@@ -40,7 +39,6 @@ class ColorPalettes:
         100: "#EDCFE7",
         50: "#CE82BF",
     }
-
     green = {
         900: "#344515",
         800: "#42581A",
@@ -54,25 +52,65 @@ class ColorPalettes:
         50: "#A7BF7B",
     }
 
-    colorful_light = {
-        "Purple": "#A543EF",
-        "Magenta": "#9F1853",
-        "Yellow": "#9C7110",
+    purple = {
+        900: "#312a7d",
+        800: "#5238a7",
+        700: "#764bc5",
+        600: "#976acd",
+        500: "#b48ad1",
+        400: "#cdabd7",
+        300: "#e1cde1",
+    }
+
+    purple_dark = [
+        purple[300],
+        purple[400],
+        purple[500],
+        purple[600],
+        purple[700],
+    ]
+    purple_light = [
+        purple[900],
+        purple[800],
+        purple[700],
+        purple[600],
+        purple[500],
+    ]
+
+    teal = {
+        900: "#0c5d64",
+        800: "#127577",
+        700: "#198d87",
+        600: "#20a796",
+        500: "#40bfa2",
+        400: "#7cd2b0",
+        300: "#b9e0c9",
+    }
+
+    teal_dark = [teal[300], teal[400], teal[500], teal[600], teal[700]]
+    teal_light = [teal[900], teal[800], teal[700], teal[600], teal[500]]
+
+
+class Categorical:
+    cat_colorful_light = {
         "Blue": "#002D9C",
+        "Purple": "#A543EF",
+        "Yellow": "#9C7110",
+        "Magenta": "#9F1853",
         "Teal": "#12847C",
         "Cyan": "#153167",
     }
 
-    colorful_dark = {
-        "Purple": "#C276FC",
-        "Magenta": "#D12771",
-        "Yellow": "#FEB000",
-        "Blue": "#4589FF",
-        "Teal": "#11AA9F",
+    cat_colorful_dark = {
+        "Blue": "#8aabfd",
+        "Purple": "#a07bde",
+        "Yellow": "#e3b13e",
+        "Magenta": "#ae49a2",
+        "Teal": "#4fbbae",
         "Cyan": "#5073B7",
     }
 
-    bright = {
+    cat_bright = {
         "Blue": "#648FFF",
         "Purple": "#785EF0",
         "Magenta": "#DC267F",
@@ -80,37 +118,61 @@ class ColorPalettes:
         "Golden": "#FFB000",
     }
 
+    cat_qs_dark = {
+        "Teal": "#4C9AAF",
+        "Blue": "#4B92E5",
+        "Indigo": "#997AFC",
+        "Purple": "#C89EF1",
+        "Magenta": "#DA62C6",
+        "Orange": "#DF8855",
+        "Yellow": "#FAE275",
+    }
+
+    cat_qs_light = {
+        "Teal": "#4C9AAF",
+        "Blue": "#4B92E5",
+        "Indigo": "#997AFC",
+        "Purple": "#B176E2",
+        "Magenta": "#DA62C4",
+        "Orange": "#CA704A",
+        "Yellow": "#97933E",
+    }
+
 
 class Diverging:
     """Diverging colour palettes."""
 
     plum_green = [
-        "#30003A",
-        "#611770",
-        "#86599B",
-        "#E1C9E2",
-        "#D1EEC9",
-        "#4BA24F",
-        "#19672A",
-        "#063615",
+        "#7c2d73",
+        "#983b8d",
+        "#b34ea6",
+        "#c769ba",
+        "#d588c9",
+        "#dfa9d6",
+        "#eac9e4",
+        "#9fe4db",
+        "#6fd2c5",
+        "#4cbcaf",
+        "#32a599",
+        "#1e8d83",
+        "#08766d",
+        "#005f57",
     ]
-    purple_teal = [
-        "#491D8B",
-        "#6929C4",
-        "#8A3FFC",
-        "#A56EFF",
-        "#BE95FF",
-        "#D4BBFF",
-        "#E8DAFF",
-        "#F6F2FF",
-        "#D9FBFB",
-        "#9EF0F0",
-        "#3DDBD9",
-        "#08BDBA",
-        "#009D9A",
-        "#007D79",
-        "#005D5D",
-        "#004144",
+    teal_purple = [
+        "#09443a",
+        "#105f52",
+        "#187b6b",
+        "#1e9884",
+        "#29b69f",
+        "#5cd0ba",
+        "#a0e5d5",
+        "#d5cff1",
+        "#bbafea",
+        "#a28ee3",
+        "#8a6cda",
+        "#734cc8",
+        "#5a34a4",
+        "#402379",
     ]
 
 
