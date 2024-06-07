@@ -18,9 +18,9 @@ def create_palette(palette: str) -> cycler:
     """
 
     sequential_palettes = [
-        "purple_light",
+        "violet_light",
         "teal_light",
-        "purple_dark",
+        "violet_dark",
         "teal_dark",
     ]
     categorical_palettes = [
@@ -30,7 +30,7 @@ def create_palette(palette: str) -> cycler:
         "cat_qs_light",
         "cat_bright",
     ]
-    diverging_palettes = ["plum_green", "teal_purple"]
+    diverging_palettes = ["plum_green", "green_violet"]
 
     if palette in diverging_palettes:
         hex_values = getattr(Diverging, palette)
