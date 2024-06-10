@@ -7,9 +7,6 @@ from qstyles.palettes import Base
 from qstyles.styler import compose_theme, set_theme
 
 
-line_style_cycler = ["-", "--", ":", "-."]
-marker_style_cycler = ["o", "D", "v", "s"]
-
 FONTS_PATH = Path(__file__).parent / "vendor/Inter"
 
 font_files = font_manager.findSystemFonts(fontpaths=str(FONTS_PATH))
@@ -28,7 +25,6 @@ def _base_theme() -> dict:
     """
 
     style_dict = {
-        "lines.markersize": 4.0,
         "font.family": ["sans-serif"],
         "font.sans-serif": ["Inter", "Helvetica", "sans-serif"],
         "axes.titleweight": "bold",
@@ -49,7 +45,8 @@ def _base_theme() -> dict:
         "ytick.minor.pad": 6,
         "ytick.direction": "out",
         "ytick.minor.visible": False,
-        "grid.alpha": 0.5,
+        "grid.alpha": 0.75,
+        "grid.linestyle": ":",
         "legend.fontsize": "small",
         "legend.title_fontsize": "medium",
         "legend.fancybox": True,
@@ -64,10 +61,10 @@ def _base_theme() -> dict:
 
 
 def light_theme(
-    minimal: Optional[bool],
     palette: Optional[str] = None,
     context: Optional[str] = "notebook",
     grid: Optional[bool] = True,
+    minimal: Optional[bool] = False,
 ) -> None:
     """Default light theme.
 
@@ -100,10 +97,10 @@ def light_theme(
 
 
 def dark_theme(
-    minimal: Optional[bool],
     palette: Optional[str] = None,
     context: Optional[str] = "notebook",
     grid: Optional[bool] = True,
+    minimal: Optional[bool] = False,
 ) -> None:
     """Default dark theme.
 
