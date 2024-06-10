@@ -4,18 +4,18 @@
 
 
 class Sequential:
-    """Quansight colour palettes. These can be used for both
+    """Monochrome colour palettes. These can be used for both
     categorical and sequential data.
 
-    By default we only use a subset of the full colour monochrome colour
-    palettes to ensure the plots have enough colour contrast for accessibility
-    in light (900-500) and dark themes (400-50).
+    Each hue has 9 shades from 50 to 900.
+    Though to create the actual colour palettes we only use a subset of the full
+    colour monochrome colour palettes to ensure the plots have enough contrast
+    against the background colours.
 
-    - Monochrome: violet, plum, green
-    -
+
     """
 
-    violet = {
+    qs_violet = {
         900: "#1F0547",
         800: "#2A0A63",
         700: "#37127F",
@@ -27,7 +27,7 @@ class Sequential:
         100: "#C1ADED",
         50: "#D7C8F6",
     }
-    plum = {
+    qs_plum = {
         900: "#541140",
         800: "#6B1755",
         700: "#831F6A",
@@ -39,7 +39,7 @@ class Sequential:
         100: "#ECB5E2",
         50: "#F6D3EF",
     }
-    green = {
+    qs_green = {
         900: "#263513",
         800: "#394E1A",
         700: "#4B6820",
@@ -76,49 +76,50 @@ class Sequential:
         50: "#D9FFE9",
     }
 
-    violet_dark = [
-        violet[50],
-        violet[100],
-        violet[200],
-        violet[300],
-        violet[400],
+    # Dark and light palettes for each of the monochrome colour palettes.
+    qs_violet_dark = [
+        qs_violet[50],
+        qs_violet[100],
+        qs_violet[200],
+        qs_violet[300],
+        qs_violet[400],
     ]
-    violet_light = [
-        violet[300],
-        violet[400],
-        violet[500],
-        violet[700],
-        violet[900],
-    ]
-
-    green_dark = [
-        green[50],
-        green[100],
-        green[200],
-        green[300],
-        green[400],
-    ]
-    green_light = [
-        green[500],
-        green[600],
-        green[700],
-        green[800],
-        green[900],
+    qs_violet_light = [
+        qs_violet[300],
+        qs_violet[400],
+        qs_violet[500],
+        qs_violet[700],
+        qs_violet[900],
     ]
 
-    plum_dark = [
-        plum[50],
-        plum[100],
-        plum[200],
-        plum[300],
-        plum[400],
+    qs_green_dark = [
+        qs_green[50],
+        qs_green[100],
+        qs_green[200],
+        qs_green[300],
+        qs_green[400],
     ]
-    plum_light = [
-        plum[400],
-        plum[500],
-        plum[600],
-        plum[700],
-        plum[800],
+    qs_green_light = [
+        qs_green[500],
+        qs_green[600],
+        qs_green[700],
+        qs_green[800],
+        qs_green[900],
+    ]
+
+    qs_plum_dark = [
+        qs_plum[50],
+        qs_plum[100],
+        qs_plum[200],
+        qs_plum[300],
+        qs_plum[400],
+    ]
+    qs_plum_light = [
+        qs_plum[400],
+        qs_plum[500],
+        qs_plum[600],
+        qs_plum[700],
+        qs_plum[800],
     ]
 
     psf_blue_dark = [
@@ -153,6 +154,8 @@ class Sequential:
 
 
 class Categorical:
+    """Categorical colour palettes."""
+
     cat_colorful_light = {
         "Blue": "#002D9C",
         "Purple": "#A543EF",
@@ -203,7 +206,7 @@ class Categorical:
 class Diverging:
     """Diverging colour palettes."""
 
-    plum_green = [
+    qs_plum_green = [
         "#541140",
         "#831F6A",
         "#B2399A",
@@ -220,7 +223,7 @@ class Diverging:
         "#4B6820",
         "#263513",
     ]
-    green_violet = [
+    qs_green_violet = [
         "#263513",
         "#4B6820",
         "#749A2E",
@@ -241,7 +244,8 @@ class Diverging:
 
 class Base:
     """Class to hold the base colours - greys - to be used in the themes.
-    These colours are mainly used for backgrounds, axes, titles and the such.
+    These colours are mainly used for base chart elements, such as backgrounds,
+    axes, titles and the such.
     """
 
     grey = {
