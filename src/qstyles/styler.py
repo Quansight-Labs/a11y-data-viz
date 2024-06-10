@@ -1,3 +1,4 @@
+from itertools import cycle, islice
 from typing import Optional
 
 import matplotlib as mpl
@@ -80,15 +81,11 @@ def compose_theme(
         palette = f"purple_{style}"
         color_palette = getattr(Sequential, palette)
 
-    # custom_cycler = cycler(color=color_palette) +
-    # cycler(marker=['o', 'D', 'v', 's', 'o', 'D'],
-    # linestyle=['-', '--', ':', '-.', '-', '--'])
-
-    palette = {
-        "axes.prop_cycle": cycler(color=color_palette),
+    custom_cycler = {
+        "axes.prop_cycle": create_cycler(color_palette),
     }
 
-    theme_dict.update(palette)
+    theme_dict.update(custom_cycler)
     theme_dict.update(plotting_context(context))
 
     # set grid on or off
@@ -144,7 +141,7 @@ def plotting_context(
             "axes.linewidth": 1.0,
             "grid.linewidth": 0.75,
             "lines.linewidth": 1.5,
-            "lines.markersize": 6,
+            "lines.markersize": 4,
             "patch.linewidth": 1,
             "hatch.linewidth": 1.0,
             "xtick.major.width": 1.0,
@@ -168,6 +165,18 @@ def plotting_context(
         context_dict["axes.titlepad"] = font_base_context["font.size"] * 1.2
 
     return context_dict
+
+
+def create_cycler(palette: list[str]) -> cycler:
+    lines = ["-", "--", ":", "-."]
+    # markers = ["o", "D", "v", "s"]
+
+    line_cycler = list(islice(cycle(lines), len(palette)))
+    # markers_cycler = list(islice(cycle(markers), len(palette)))
+
+    custom_cycler = cycler(color=palette) + cycler(linestyle=line_cycler)
+
+    return custom_cycler
 
 
 _context_keys = [
