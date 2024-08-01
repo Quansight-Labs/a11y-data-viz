@@ -245,7 +245,7 @@ class Diverging:
 class Base:
     """Class to hold the base colours - greys - to be used in the themes.
     These colours are mainly used for base chart elements, such as backgrounds,
-    axes, titles and the such.
+    axes, titles and other common plot elements.
     """
 
     grey = {
@@ -273,5 +273,5 @@ class Base:
         grey[600],
         grey[700],
         grey[800],
-        grey[400],
+        grey[900],
     ]

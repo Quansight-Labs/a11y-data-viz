@@ -1,3 +1,7 @@
+# Copyright 2024 Quansight Labs. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
 from pathlib import Path
 from typing import Optional
 
@@ -7,6 +11,8 @@ from qstyles.palettes import Base
 from qstyles.styler import compose_theme, set_theme
 
 
+# Vendored font, the user can keep using their own font as per
+# https://matplotlib.org/stable/gallery/text_labels_and_annotations/font_family_rc.html
 FONTS_PATH = Path(__file__).parent / "vendor/Inter"
 
 font_files = font_manager.findSystemFonts(fontpaths=str(FONTS_PATH))
@@ -127,11 +133,16 @@ def dark_theme(
     # Add the minimal settings last to avoid overriding it with other settings
     if minimal:
         theme_dict.update(_minimal())
-
     set_theme(theme_dict)
 
 
 def _light_settings():
+    """Default light settings for the theme - mostly only changes chart elements,
+    colour palettes are changed through the styler method.
+
+    Returns:
+        light_settings (dict): Dictionary containing the light theme settings.
+    """
     bg_color = "white"
     fg_color = Base.grey[800]
     fg_color_darker = Base.grey[900]
@@ -159,6 +170,12 @@ def _light_settings():
 
 
 def _dark_settings():
+    """Default light settings for the theme - mostly only changes chart elements,
+    colour palettes are changed through the styler method.
+
+    Returns:
+        light_settings (dict): Dictionary containing the light theme settings.
+    """
     bg_color = Base.grey[900]
     fg_color = Base.grey[100]
     fg_color_lighter = Base.grey[50]
@@ -188,6 +205,7 @@ def _dark_settings():
 def _minimal():
     """Minimal theme - it removes some line items such as grids, splines
     (borders), legend frame edges."""
+
     minimal = {
         "axes.grid": False,
         "axes.spines.top": False,
