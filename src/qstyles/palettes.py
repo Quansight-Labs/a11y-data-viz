@@ -4,94 +4,158 @@
 
 
 class Sequential:
-    """Quansight colour palettes. These can be used for both
+    """Monochrome colour palettes. These can be used for both
     categorical and sequential data.
 
-    By default we only use a subset of the full colour monochrome colour
-    palettes to ensure the plots have enough colour contrast for accessibility
-    in light (900-500) and dark themes (400-50).
+    Each hue has 9 shades from 50 to 900.
+    Though to create the actual colour palettes we only use a subset of the full
+    colour monochrome colour palettes to ensure the plots have enough contrast
+    against the background colours.
 
-    - Monochrome: violet, plum, green
-    -
+
     """
 
-    violet = {
-        900: "#E2D4FF",
-        800: "#AF8AFF",
-        700: "#9559FF",
-        600: "#672BEC",
-        500: "#4D1EB7",
-        400: "#46209B",
-        300: "#3F1E8A",
-        200: "#2E1466",
-        100: "#200E48",
-        50: "#160048",
+    qs_violet = {
+        900: "#1F0547",
+        800: "#2A0A63",
+        700: "#37127F",
+        600: "#46209B",
+        500: "#5C35B0",
+        400: "#8767CE",
+        300: "#9D80DB",
+        200: "#AD93E4",
+        100: "#C1ADED",
+        50: "#D7C8F6",
     }
-    plum = {
-        900: "#501A45",
-        800: "#652058",
-        700: "#7E286D",
-        600: "#973083",
+    qs_plum = {
+        900: "#541140",
+        800: "#6B1755",
+        700: "#831F6A",
+        600: "#9A2A81",
         500: "#B2399A",
-        400: "#C05DAC",
-        300: "#CE82BF",
-        200: "#DEAAD4",
-        100: "#EDCFE7",
-        50: "#CE82BF",
+        400: "#C658B2",
+        300: "#D97FCB",
+        200: "#E399D6",
+        100: "#ECB5E2",
+        50: "#F6D3EF",
     }
-    green = {
-        900: "#344515",
-        800: "#42581A",
-        700: "#526D21",
-        600: "#638327",
+    qs_green = {
+        900: "#263513",
+        800: "#394E1A",
+        700: "#4B6820",
+        600: "#5F8126",
         500: "#749A2E",
-        400: "#8DAC54",
-        300: "#A7BF7B",
-        200: "#C3D4A5",
-        100: "#DEE7CD",
-        50: "#A7BF7B",
+        400: "#8DB34B",
+        300: "#A9CC70",
+        200: "#BAD98C",
+        100: "#CDE6AB",
+        50: "#E2F2CC",
     }
-
-    purple = {
-        900: "#312a7d",
-        800: "#5238a7",
-        700: "#764bc5",
-        600: "#976acd",
-        500: "#b48ad1",
-        400: "#cdabd7",
-        300: "#e1cde1",
+    psf_blue = {
+        900: "#041E4F",
+        800: "#1B3971",
+        700: "#244C97",
+        600: "#2D5FBD",
+        500: "#4C7AD1",
+        400: "#779DE5",
+        300: "#90B0EB",
+        200: "#ABC4F2",
+        100: "#C7D9F8",
+        50: "#E6EEFF",
     }
-
-    purple_dark = [
-        purple[300],
-        purple[400],
-        purple[500],
-        purple[600],
-        purple[700],
-    ]
-    purple_light = [
-        purple[900],
-        purple[800],
-        purple[700],
-        purple[600],
-        purple[500],
-    ]
-
     teal = {
-        900: "#0c5d64",
-        800: "#127577",
-        700: "#198d87",
-        600: "#20a796",
-        500: "#40bfa2",
-        400: "#7cd2b0",
-        300: "#b9e0c9",
+        900: "#042A22",
+        800: "#08483B",
+        700: "#0E6655",
+        600: "#18846F",
+        500: "#28A188",
+        400: "#40BFA2",
+        300: "#80E1BC",
+        200: "#9BEBC7",
+        100: "#B9F5D6",
+        50: "#D9FFE9",
     }
 
-    teal_dark = [teal[300], teal[400], teal[500], teal[600], teal[700]]
-    teal_light = [teal[900], teal[800], teal[700], teal[600], teal[500]]
+    # Dark and light palettes for each of the monochrome colour palettes.
+    qs_violet_dark = [
+        qs_violet[50],
+        qs_violet[100],
+        qs_violet[200],
+        qs_violet[300],
+        qs_violet[400],
+    ]
+    qs_violet_light = [
+        qs_violet[300],
+        qs_violet[400],
+        qs_violet[500],
+        qs_violet[700],
+        qs_violet[900],
+    ]
+
+    qs_green_dark = [
+        qs_green[50],
+        qs_green[100],
+        qs_green[200],
+        qs_green[300],
+        qs_green[400],
+    ]
+    qs_green_light = [
+        qs_green[500],
+        qs_green[600],
+        qs_green[700],
+        qs_green[800],
+        qs_green[900],
+    ]
+
+    qs_plum_dark = [
+        qs_plum[50],
+        qs_plum[100],
+        qs_plum[200],
+        qs_plum[300],
+        qs_plum[400],
+    ]
+    qs_plum_light = [
+        qs_plum[400],
+        qs_plum[500],
+        qs_plum[600],
+        qs_plum[700],
+        qs_plum[800],
+    ]
+
+    psf_blue_dark = [
+        psf_blue[50],
+        psf_blue[100],
+        psf_blue[200],
+        psf_blue[300],
+        psf_blue[400],
+    ]
+    psf_blue_light = [
+        psf_blue[500],
+        psf_blue[600],
+        psf_blue[700],
+        psf_blue[800],
+        psf_blue[900],
+    ]
+
+    teal_dark = [
+        teal[50],
+        teal[100],
+        teal[200],
+        teal[300],
+        teal[400],
+    ]
+    teal_light = [
+        teal[500],
+        teal[600],
+        teal[700],
+        teal[800],
+        teal[900],
+    ]
 
 
 class Categorical:
+    """Categorical colour palettes."""
+
     cat_colorful_light = {
         "Blue": "#002D9C",
         "Purple": "#A543EF",
@@ -142,43 +206,46 @@ class Categorical:
 class Diverging:
     """Diverging colour palettes."""
 
-    plum_green = [
-        "#7c2d73",
-        "#983b8d",
-        "#b34ea6",
-        "#c769ba",
-        "#d588c9",
-        "#dfa9d6",
-        "#eac9e4",
-        "#9fe4db",
-        "#6fd2c5",
-        "#4cbcaf",
-        "#32a599",
-        "#1e8d83",
-        "#08766d",
-        "#005f57",
+    qs_plum_green = [
+        "#541140",
+        "#831F6A",
+        "#B2399A",
+        "#C658B2",
+        "#D97FCB",
+        "#ECB5E2",
+        "#F6D3EF",
+        "#F8F4F2",
+        "#E2F2CC",
+        "#CDE6AB",
+        "#A9CC70",
+        "#8DB34B",
+        "#749A2E",
+        "#4B6820",
+        "#263513",
     ]
-    teal_purple = [
-        "#09443a",
-        "#105f52",
-        "#187b6b",
-        "#1e9884",
-        "#29b69f",
-        "#5cd0ba",
-        "#a0e5d5",
-        "#d5cff1",
-        "#bbafea",
-        "#a28ee3",
-        "#8a6cda",
-        "#734cc8",
-        "#5a34a4",
-        "#402379",
+    qs_green_violet = [
+        "#263513",
+        "#4B6820",
+        "#749A2E",
+        "#8DB34B",
+        "#A9CC70",
+        "#CDE6AB",
+        "#E2F2CC",
+        "#F4F5F5",
+        "#D7C8F6",
+        "#C1ADED",
+        "#9D80DB",
+        "#8767CE",
+        "#5C35B0",
+        "#37127F",
+        "#1F0547",
     ]
 
 
 class Base:
     """Class to hold the base colours - greys - to be used in the themes.
-    These colurs are mainly used for backgrounds, axes, titles and the such.
+    These colours are mainly used for base chart elements, such as backgrounds,
+    axes, titles and other common plot elements.
     """
 
     grey = {
@@ -186,10 +253,25 @@ class Base:
         800: "#3C4048",
         700: "#555B66",
         600: "#707785",
-        500: "#8C929F",
+        500: "#8A909E",
         400: "#AAAEBB",
         300: "#C3C6CD",
         200: "#DDDEE2",
         100: "#EBECEE",
         50: "#F9F9FA",
     }
+
+    grey_dark = [
+        grey[50],
+        grey[100],
+        grey[200],
+        grey[300],
+        grey[400],
+    ]
+    grey_light = [
+        grey[500],
+        grey[600],
+        grey[700],
+        grey[800],
+        grey[900],
+    ]

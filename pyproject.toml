@@ -28,9 +28,9 @@ classifiers = [
 dependencies = ["matplotlib"]
 
 [project.urls]
-Documentation = "https://github.com/trallard/qstyles#readme"
-Issues = "https://github.com/trallard/qstyles/issues"
-Source = "https://github.com/trallard/qstyles"
+Documentation = "https://github.com/Quansight-Labs/a11y-data-viz#readme"
+Issues = "https://github.com/Quansight-Labs/a11y-data-viz/issues"
+Source = "https://github.com/Quansight-Labs/a11y-data-viz"
 
 # Versioning -------------------------------------------------------------------
 [tool.hatch.version]
