@@ -12,50 +12,55 @@ from cycler import cycler
 from qstyles.palettes import Base, Categorical, Diverging, Sequential
 
 
+def _palettes(cls: type, kind: type) -> list[str]:
+    """Names of the public palettes of the given type defined on a class."""
+    return [
+        name
+        for name, value in vars(cls).items()
+        if not name.startswith("_") and isinstance(value, kind)
+    ]
+
+
+SEQUENTIAL_PALETTES = _palettes(Sequential, list)
+CATEGORICAL_PALETTES = _palettes(Categorical, dict)
+DIVERGING_PALETTES = _palettes(Diverging, list)
+BASE_PALETTES = _palettes(Base, list)
+PALETTES = (
+    SEQUENTIAL_PALETTES
+    + CATEGORICAL_PALETTES
+    + DIVERGING_PALETTES
+    + BASE_PALETTES
+)
+
+
 def create_palette(palette: str) -> cycler:
     """Helper function to build a repeating list of colors for matplotlib
 
     Args:
-        hex_values (list): A list of hex values for colors to use as a color palette
+        palette (str): Name of one of the palettes in qstyles.palettes
 
     Returns:
         cycler: A cycler object that can be used to set the color palette for matplotlib
     """
 
-    sequential_palettes = [
-        "qs_violet_light",
-        "qs_violet_dark",
-        "qs_green_light",
-        "qs_green_dark",
-        "qs_plum_light",
-        "qs_plum_dark",
-        "psf_blue_dark",
-        "psf_blue_light",
-        "teal_light",
-        "teal_dark",
-    ]
-    categorical_palettes = [
-        "cat_colorful_dark",
-        "cat_colorful_light",
-        "cat_qs_dark",
-        "cat_qs_light",
-        "cat_bright",
-    ]
-    diverging_palettes = ["qs_plum_green", "qs_green_violet"]
-    base_palettes = ["grey_dark", "grey_light"]
-
-    if palette in diverging_palettes:
+    if palette in DIVERGING_PALETTES:
         hex_values = getattr(Diverging, palette)
 
     # dictionary of named colours
-    elif palette in categorical_palettes:
+    elif palette in CATEGORICAL_PALETTES:
         hex_values = list(getattr(Categorical, palette).values())
 
-    elif palette in sequential_palettes:
+    elif palette in SEQUENTIAL_PALETTES:
         hex_values = getattr(Sequential, palette)
 
-    elif palette in base_palettes:
+    elif palette in BASE_PALETTES:
         hex_values = getattr(Base, palette)
+
+    else:
+        raise ValueError(
+            f"Unknown palette '{palette}'. "
+            f"Choose one of: {', '.join(PALETTES)}"
+        )
 
     return cycler("color", hex_values)
 
