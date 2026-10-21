@@ -2,8 +2,8 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-# Generated from the Quansight brand colour system (OKLCH ramps, rebrand
-# 2026). Regenerate rather than editing the hex values by hand.
+# Colours from the Quansight brand colour system:
+# https://www.figma.com/design/bIeauLtP07MiUvDc24PNA4/PBC-Rebranding?node-id=336-2
 
 
 class Sequential:
