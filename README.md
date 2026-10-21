@@ -48,9 +48,12 @@ violet.
 
 Use the `_light` palettes with `light_theme` and the `_dark` palettes with
 `dark_theme`. Every colour in them has at least 3:1 contrast against the
-theme background (WCAG 1.4.11), and the categorical palettes stay
-distinguishable under the common forms of colour blindness. The tests check
-the contrast.
+theme background, the WCAG 1.4.11 minimum for shapes such as bars, lines and
+markers. Text needs 4.5:1 (WCAG 1.4.3), which many palette colours do not
+reach, so do not use palette colours for text. The themes' own text colours
+(titles, labels, ticks and legends) are all above 4.5:1. The categorical
+palettes stay distinguishable under the common forms of colour blindness.
+The tests check the 3:1 contrast.
 
 The diverging palettes are designed for light backgrounds. Dark versions
 are not available yet.
