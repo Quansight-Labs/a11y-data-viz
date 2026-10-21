@@ -13,7 +13,7 @@ from qstyles.styler import compose_theme, set_theme
 
 # Vendored font, the user can keep using their own font as per
 # https://matplotlib.org/stable/gallery/text_labels_and_annotations/font_family_rc.html
-FONTS_PATH = Path(__file__).parent / "vendor/Inter"
+FONTS_PATH = Path(__file__).parent / "vendor/HankenGrotesk"
 
 font_files = font_manager.findSystemFonts(fontpaths=str(FONTS_PATH))
 
@@ -32,7 +32,7 @@ def _base_theme() -> dict:
 
     style_dict = {
         "font.family": ["sans-serif"],
-        "font.sans-serif": ["Inter", "Helvetica", "sans-serif"],
+        "font.sans-serif": ["Hanken Grotesk", "Helvetica", "sans-serif"],
         "axes.titleweight": "bold",
         "axes.labelpad": 8.0,
         "axes.labelweight": 600,
