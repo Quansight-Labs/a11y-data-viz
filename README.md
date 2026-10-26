@@ -53,7 +53,7 @@ markers. Text needs 4.5:1 (WCAG 1.4.3), which many palette colours do not
 reach, so do not use palette colours for text. The themes' own text colours
 (titles, labels, ticks and legends) are all above 4.5:1. The categorical
 palettes stay distinguishable under the common forms of colour blindness.
-The tests check the 3:1 contrast.
+The included tests check for 3:1 contrast.
 
 The diverging palettes are designed for light backgrounds. Dark versions
 are not available yet.
